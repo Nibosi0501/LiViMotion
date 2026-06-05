@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
-// main.cpp
+// Yolo.cpp
 //
-// 簡単な説明
+// Yoloクラスの実装と関連する関数の定義
 //
 // Copyright (c) 2026 Maito Yasui
 // Released under the GNU GPL-3.0 License.
