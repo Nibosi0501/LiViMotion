@@ -134,7 +134,7 @@ g++ -O3 \
   -framework OpenGL -framework GLUT \
   -Wno-deprecated \
   `pkg-config --cflags --libs opencv4` \
-  -mmacosx-version-min=13.0 -std=c++17 \
+  -mmacosx-version-min=13.0 -std=c++20 \
   Calibration/create_calibration_600x600.cpp
 ```
 
@@ -157,8 +157,7 @@ g++ -O3 \
   ./Tracker/tracker.cpp \
   ./Tracker/Hungarian/hungarian.cpp \
   ./Tracker/Matching/matching.cpp \
-  ./Tracker/FloorWindow/floorWindow.cpp \
-  ./Tracker/FloorWindow/movieController.cpp \
+  ./Tracker/FlorWindow/footprints.cpp \
   main.cpp
 ```
 
@@ -209,7 +208,7 @@ sendLidar.send(points);
 
 ```bash
 cd Yolo_Python
-python main.py
+python3 main.py
 ```
 
 `main.py` 内の定数を環境に合わせて変更してください。
