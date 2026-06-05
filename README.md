@@ -15,7 +15,8 @@
 - [使い方](#使い方)
   - [1. キャリブレーション](#1-キャリブレーション)
   - [2. LiDAR による足位置検出・送信](#2-lidar-による足位置検出送信)
-  - [3. インタラクションシステムの実行](#3-インタラクションシステムの実行)
+  - [3. YOLO 姿勢推定の実行](#3-yolo-姿勢推定の実行)
+  - [4. インタラクションシステムの実行](#4-インタラクションシステムの実行)
 - [通信プロトコル](#通信プロトコル)
 - [ライセンス](#ライセンス)
 - [コントリビュート](#コントリビュート)
@@ -77,6 +78,10 @@ LiViMotion/
 │   ├── SendUdp.hpp / send_udp.cpp  #   LiDAR データ送信
 │   └── ReceiveUdp.hpp / receive_udp.cpp  #   LiDAR・YOLO データ受信
 │
+├── Yolo_Python/                    # YOLO 姿勢推定（Python）
+│   ├── main.py                     #   YOLOv11x-pose 推論・UDP キーポイント送信
+│   └── models/                     #   YOLO モデルファイル格納ディレクトリ
+│
 ├── Experiment/600x600/             # メインのインタラクションシステム
 │   ├── main.cpp                    #   エントリポイント・描画ループ
 │   ├── Yolo/                       #   YOLO キーポイント処理・ジェスチャー認識
@@ -99,6 +104,8 @@ LiViMotion/
 
 ## 依存ライブラリ
 
+### C++
+
 | ライブラリ | 用途 |
 |:---|:---|
 | [OpenCV](https://opencv.org/) 4.x | 画像処理・カルマンフィルタ・射影変換 |
@@ -107,6 +114,16 @@ LiViMotion/
 
 - **C++ 標準**: C++20
 - **対応 OS**: macOS Apple Silicon（`-framework OpenGL -framework GLUT` を使用）
+
+### Python（Yolo_Python）
+
+| ライブラリ | 用途 |
+|:---|:---|
+| [Ultralytics](https://docs.ultralytics.com/) | YOLOv11 姿勢推定モデルの推論 |
+| [OpenCV](https://opencv.org/) (cv2) | カメラキャプチャ・画像描画 |
+
+- **Python**: 3.9 以上推奨
+- **モデル**: [YOLOv11x-pose](https://docs.ultralytics.com/models/yolo11/) を `models/` ディレクトリに配置（Apple Silicon の場合は CoreML 形式に変換）
 
 ## ビルド方法
 
@@ -178,7 +195,33 @@ std::vector<std::pair<float, float>> points;
 sendLidar.send(points);
 ```
 
-### 3. インタラクションシステムの実行
+### 3. YOLO 姿勢推定の実行
+
+`Yolo_Python/main.py` を実行し、カメラ映像からリアルタイムで姿勢推定を行い、検出したキーポイントを UDP で送信します。
+
+#### モデルの準備
+
+1. [Ultralytics 公式サイト](https://docs.ultralytics.com/models/yolo11/)から YOLOv11x-pose モデルをダウンロード
+2. Apple Silicon (M1/M2) の場合は CoreML 形式（`.mlpackage`）に変換
+3. `Yolo_Python/models/` ディレクトリに配置
+
+#### 実行
+
+```bash
+cd Yolo_Python
+python main.py
+```
+
+`main.py` 内の定数を環境に合わせて変更してください。
+
+| 定数 | デフォルト値 | 説明 |
+|:---|:---|:---|
+| `IP` | `127.0.0.1` | 送信先 IP アドレス |
+| `PORT` | `10001` | 送信先ポート番号（前方カメラ: `10001`、後方カメラ: `10002`） |
+
+> **Note**: 複数台のカメラを使用する場合は、`main.py` を複数起動し、それぞれ異なるカメラデバイスと送信ポートを設定してください。
+
+### 4. インタラクションシステムの実行
 
 LiDAR プロセスおよび YOLO 推論プロセスが起動している状態で、`Experiment/600x600` のメインプログラムを実行します。
 
