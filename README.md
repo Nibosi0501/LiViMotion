@@ -91,6 +91,8 @@ LiViMotion/
 │       ├── Hungarian/              #     ハンガリアンアルゴリズム（最適割当）
 │       ├── Matching/               #     LiDAR-YOLO トラッカーのマッチング
 │       └── FloorWindow/            #     足跡インタラクション・エフェクト管理
+│           ├── footprints.cpp      #       LiDAR ベースの足跡処理
+│           └── footprints_Yolo.cpp #       YOLO ベースの足跡処理
 │
 ├── Movie/                          # テクスチャ・メディアリソース
 │   ├── circle3.png
@@ -123,7 +125,7 @@ LiViMotion/
 | [OpenCV](https://opencv.org/) (cv2) | カメラキャプチャ・画像描画 |
 
 - **Python**: 3.9 以上推奨
-- **モデル**: [YOLOv11x-pose](https://docs.ultralytics.com/models/yolo11/) を `models/` ディレクトリに配置（Apple Silicon の場合は CoreML 形式に変換）
+- **モデル**: [YOLOv11x-pose](https://docs.ultralytics.com/models/yolo11/) を `models/` ディレクトリに配置（Apple Silicon (M シリーズ) の場合は CoreML 形式（`.mlpackage`）に変換）
 
 ## ビルド方法
 
@@ -157,7 +159,8 @@ g++ -O3 \
   ./Tracker/tracker.cpp \
   ./Tracker/Hungarian/hungarian.cpp \
   ./Tracker/Matching/matching.cpp \
-  ./Tracker/FlorWindow/footprints.cpp \
+  ./Tracker/FloorWindow/footprints.cpp \
+  ./Tracker/FloorWindow/footprints_Yolo.cpp \
   main.cpp
 ```
 
@@ -168,7 +171,7 @@ g++ -O3 \
 プロジェクタとカメラの座標系を対応付けるキャリブレーションを行います。
 
 1. `create_calibration_600x600` を実行し、OpenGL ウィンドウにグリッドを表示
-2. カメラの画角を調整後、スペースキーでキャプチャ
+2. カメラの画角を調整後、スペースキーを押してキャリブレーションモードに移行
 3. カメラ映像上のグリッド交点（7×7 = 49 点）を左クリックで選択
    - 自動検出されない点は右クリックで手動指定可能
 4. 任意のキーを押してキャリブレーションデータを保存
@@ -201,7 +204,7 @@ sendLidar.send(points);
 #### モデルの準備
 
 1. [Ultralytics 公式サイト](https://docs.ultralytics.com/models/yolo11/)から YOLOv11x-pose モデルをダウンロード
-2. Apple Silicon (M1/M2) の場合は CoreML 形式（`.mlpackage`）に変換
+2. Apple Silicon (M シリーズ) の場合は CoreML 形式（`.mlpackage`）に変換
 3. `Yolo_Python/models/` ディレクトリに配置
 
 #### 実行
