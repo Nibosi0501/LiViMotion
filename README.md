@@ -1,10 +1,14 @@
 # LiViMotion
 
+<img width="3272" height="751" alt="図1" src="https://github.com/user-attachments/assets/e28201f2-89a8-40ab-a42d-1e9210ff44ec" />
+
 **LiViMotion**（**Li**DAR + **Vi**sion + **Motion**）は、2D LiDAR と YOLO 姿勢推定を統合し、個人ごとの身体動作に基づいた床面映像インタラクションを実現するシステムです。
 
-床面に投影された映像に対して、歩行者の足元位置や身体動作（手の挙上など）をリアルタイムに検出し、足跡エフェクトなどのインタラクティブな映像演出を行います。
+床面に投影された映像に対して、歩行者の足元位置や身体動作（手の挙上など）をリアルタイムに検出し、インタラクティブな映像演出を行います。
 
-https://github.com/user-attachments/assets/4899c6d1-836d-4f6c-84ff-e7152f356f7e
+https://github.com/user-attachments/assets/e7332d00-70de-4b10-b591-281e815e4513
+
+https://github.com/user-attachments/assets/94e2ea61-f1be-4d39-84cb-70942dd89c33
 
 ## 目次
 
