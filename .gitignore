@@ -66,3 +66,37 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+.eggs/
+*.egg-info/
+venv/
+.venv/
+env/
+ENV/
+pip-wheel-metadata/
+.python-version
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Repository-specific directories (relative to repository root)
+# Ignore all contents under these directories
+/docs/sites/
+/Calibration/
+/apps/Yolo/models/
+/Movie/
