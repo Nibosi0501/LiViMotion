@@ -118,6 +118,7 @@ LiViMotion/
 4. 任意のキーを押してキャリブレーションデータを保存
    - `front_calibration.txt`（前方カメラ用）
    - `back_calibration.txt`（後方カメラ用）
+<img width="4734" height="1375" alt="calibration" src="https://github.com/user-attachments/assets/1fb98b14-c94b-4409-8599-ff7554c95a87" />
 
 ### 2. LiDAR による足位置検出・送信
 
@@ -162,6 +163,10 @@ sendLidar.send(points);
 ### 4. インタラクションシステムの実行
 
 LiDAR プロセスおよび YOLO 推論プロセスが起動している状態で、`apps/` のメインプログラム(FloorMovie.cpp or FloorStamp.cpp)を実行します。
+
+https://github.com/user-attachments/assets/604eed48-c6ad-4aa4-83e0-38cb65fbda57
+
+https://github.com/user-attachments/assets/207968ac-8d19-4da5-a2ee-b75f5c47c535
 
 ## 通信プロトコル
 
