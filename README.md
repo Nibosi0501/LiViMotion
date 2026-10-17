@@ -27,7 +27,7 @@
 - **リアルタイム追跡**: カルマンフィルタによる位置予測とハンガリアンアルゴリズムによる最適なデータ対応付け
 - **身体動作認識**: YOLO26 キーポイントを用いた手の挙上などのジェスチャー検出
 - **身体動作に基づいた床面映像インタラクション**: 歩行者の足元にリアルタイムでインタラクティブな映像（星・雪の結晶など）を投影
-- **射影変換キャリブレーション**: カメラ映像と床面座標を正確に対応付けるグリッドベースのキャリブレーション
+- **射影変換キャリブレーション**: カメラ映像と床面座標を簡単に対応付けるグリッドベースのキャリブレーション
 
 ## システム構成
 
@@ -101,7 +101,8 @@ LiViMotion/
 | [OpenCV](https://opencv.org/) (cv2) | カメラキャプチャ・画像描画 |
 | [coremltools](https://apple.github.io/coremltools/docs-guides/) | CoreML 対応 |
 
-- **Python**: 3.9 以上推奨
+- **Python**: 3.8 以上
+- **PyTorch**: 1.8 以上
 - **モデル**: [YOLO26-pose](https://docs.ultralytics.com/tasks/pose) を `models/` ディレクトリに配置（Apple Silicon (M シリーズ) の場合は CoreML 形式（`.mlpackage`）に変換）
 
 ## 使い方
@@ -122,7 +123,7 @@ LiViMotion/
 
 `LiDAR/README.md` を参考に、使用する LiDAR の SDK に応じた足位置検出処理を実装してください。
 
-> **Note**: LiDAR の SDK やドライバはライセンスの関係上、本リポジトリには含まれていません。
+> **Note**: LiDAR の SDK やドライバは使用するセンサに合わせて用意してください。[例: 北陽電気](https://sourceforge.net/p/urgnetwork/wiki/top_jp/)
 
 検出した足位置座標は `SendUdp` クラスを使って UDP で送信します。
 
