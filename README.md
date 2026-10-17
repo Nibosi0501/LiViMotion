@@ -6,6 +6,8 @@
 
 床面に投影された映像に対して、歩行者の足元位置や身体動作（手の挙上など）をリアルタイムに検出し、インタラクティブな映像演出を行います。
 
+ポートフォリオサイト：[LiViMotion](https://nibosi0501.github.io/my-portfolio/sub_pages/LiviMotion.html)
+
 ## 目次
 
 - [主な機能](#主な機能)
@@ -163,10 +165,6 @@ sendLidar.send(points);
 ### 4. インタラクションシステムの実行
 
 LiDAR プロセスおよび YOLO 推論プロセスが起動している状態で、`apps/` のメインプログラム(FloorMovie.cpp or FloorStamp.cpp)を実行します。
-
-https://github.com/user-attachments/assets/604eed48-c6ad-4aa4-83e0-38cb65fbda57
-
-https://github.com/user-attachments/assets/207968ac-8d19-4da5-a2ee-b75f5c47c535
 
 ## 通信プロトコル
 
